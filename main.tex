@@ -1,0 +1,43 @@
+\documentclass{book}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=green]{hyperref}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}  % 用于支持链接
+\usepackage{fontspec}  % 使用系统字体
+\usepackage{xeCJK}     % 支持中文
+\usepackage{listings}
+\usepackage{mdframed}
+
+\begin{document}
+\tableofcontents
+
+\part{数据系统基础}
+本书前四章介绍了数据系统底层的基础概念，无论是在单台机器上运行的单点数据系统，还是分布在多台机器上的分布式数据系统都适用。
+
+\begin{enumerate}
+    \item \textbf{\autoref{ch:ch1}} 将介绍本书使用的术语和方法。\textbf{可靠性，可伸缩性和可维护性}，这些词汇到底意味着什么？如何实现这些目标？
+    \item \textbf{\autoref{ch:ch2}} 将对几种不同的\textbf{数据模型和查询语言}进行比较。从程序员的角度看，这是数据库之间最明显的区别。不同的数据模型适用于不同的应用场景。
+    \item \textbf{\autoref{ch:ch3}} 将深入\textbf{存储引擎}内部，研究数据库如何在磁盘上摆放数据。不同的存储引擎针对不同的负载进行优化，选择合适的存储引擎对系统性能有巨大影响。
+    \item \textbf{\autoref{ch:ch4}} 将对几种不同的\textbf{数据编码}进行比较。特别研究了这些格式在应用需求经常变化、模式需要随时间演变的环境中表现如何。
+\end{enumerate}
+
+第二部分将专门讨论在\textbf{分布式数据系统}中特有的问题。
+
+\newpage
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/ch1.jpg}
+    \label{fig:ch1}
+\end{figure}
+
+\chapter{可靠性、可伸缩性和可维护性}
+\label{ch:ch1}
+\include{content/ch1.tex}
+\chapter{数据模型与查询语言}
+\label{ch:ch2}
+\chapter{存储与检索}
+\label{ch:ch3}
+\chapter{编码与演化}
+\label{ch:ch4}
+
+\end{document}

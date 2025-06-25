@@ -1,0 +1,43 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.lol
+*.fls
+*.fdb_latexmk
+*.xdv
+
+# Editor backup files
+*~
+*.bak
+*.swp
+*.swo
+
+# LaTeX generated PDF
+*.pdf
+
+# LaTeXmk temporary files
+latexmkrc
+
+# Thumbnails (if using TeXShop or similar)
+*.synctex.gz
+*.synctex
+
+# Other common LaTeX temporary files
+*.idx
+*.ind
+*.ilg
+*.glg
+*.gls
+*.glo
+*.nlo
+*.nls
+*.bbl
