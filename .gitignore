@@ -41,3 +41,4 @@ latexmkrc
 *.nlo
 *.nls
 *.bbl
+.DS_Store
