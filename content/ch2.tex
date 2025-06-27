@@ -1,6 +1,6 @@
 \begin{quote}
     语言的边界就是思想的边界。
-    
+
     \textit{—— 路德维奇・维特根斯坦，《逻辑哲学》（1922）}
 \end{quote}
 
@@ -70,9 +70,10 @@
     \item 传统 SQL 模型（SQL：1999 之前）中，最常见的规范化表示形式是将职位，教育和联系信息放在单独的表中，对 User 表提供外键引用，如\autoref{fig:fig2-1}所示。
     \item 后续的 SQL 标准增加了对结构化数据类型和 XML 数据的支持；这允许将多值数据存储在单行内，并支持在这些文档内查询和索引。这些功能在 Oracle，IBM DB2，MS SQL Server 和 PostgreSQL 中都有不同程度的支持【6,7】。JSON 数据类型也得到多个数据库的支持，包括 IBM DB2，MySQL 和 PostgreSQL 【8】。
     \item 第三种选择是将职业，教育和联系信息编码为 JSON 或 XML 文档，将其存储在数据库的文本列中，并让应用程序解析其结构和内容。这种配置下，通常不能使用数据库来查询该编码列中的值。
-    \item 对于一个像简历这样自包含文档的数据结构而言，JSON 表示是非常合适的：请参阅 [例 2-1]()。JSON 比 XML 更简单。面向文档的数据库（如 MongoDB 【9】，RethinkDB 【10】，CouchDB 【11】和 Espresso【12】）支持这种数据模型。
+    \item 对于一个像简历这样自包含文档的数据结构而言，JSON 表示是非常合适的：请参阅 \autoref{exam:example2-1}。JSON 比 XML 更简单。面向文档的数据库（如 MongoDB 【9】，RethinkDB 【10】，CouchDB 【11】和 Espresso【12】）支持这种数据模型。
 \end{itemize}
 
+\label{exam:example2-1}
 \begin{lstlisting}[caption={用 JSON 文档表示一个 LinkedIn 简介}, breaklines]
     {
         "user_id": 251,
@@ -153,12 +154,12 @@ JSON 表示比\autoref{fig:fig2-1}中的多表模式具有更好的\textbf{局�
 
 \begin{itemize}
     \item 组织和学校作为实体
-    
-    在前面的描述中，\texttt{organization}（用户工作的公司）和 \texttt{school\_name}（他们学习的地方）只是字符串。也许他们应该是对实体的引用呢？然后，每个组织、学校或大学都可以拥有自己的网页（标识、新闻提要等）。每个简历可以链接到它所提到的组织和学校，并且包括他们的图标和其他信息（请参阅\autoref{fig:fig2-3}，来自 LinkedIn 的一个例子）。
-    
+
+          在前面的描述中，\texttt{organization}（用户工作的公司）和 \texttt{school\_name}（他们学习的地方）只是字符串。也许他们应该是对实体的引用呢？然后，每个组织、学校或大学都可以拥有自己的网页（标识、新闻提要等）。每个简历可以链接到它所提到的组织和学校，并且包括他们的图标和其他信息（请参阅\autoref{fig:fig2-3}，来自 LinkedIn 的一个例子）。
+
     \item 推荐
-    
-    假设你想添加一个新的功能：一个用户可以为另一个用户写一个推荐。在用户的简历上显示推荐，并附上推荐用户的姓名和照片。如果推荐人更新他们的照片，那他们写的任何推荐都需要显示新的照片。因此，推荐应该拥有作者个人简介的引用。
+
+          假设你想添加一个新的功能：一个用户可以为另一个用户写一个推荐。在用户的简历上显示推荐，并附上推荐用户的姓名和照片。如果推荐人更新他们的照片，那他们写的任何推荐都需要显示新的照片。因此，推荐应该拥有作者个人简介的引用。
 \end{itemize}
 
 \begin{figure}
@@ -273,7 +274,7 @@ UPDATE users SET first_name = substring_index(name, ' ', 1);      -- MySQL
 
 \subsubsection{查询的数据局部性}
 
-文档通常以单个连续字符串形式进行存储，编码为 JSON、XML 或其二进制变体（如 MongoDB 的 BSON）。如果应用程序经常需要访问整个文档（例如，将其渲染至网页），那么存储局部性会带来性能优势。如果将数据分割到多个表中（如 [图 2-1](img/fig2-1.png) 所示），则需要进行多次索引查找才能将其全部检索出来，这可能需要更多的磁盘查找并花费更多的时间。
+文档通常以单个连续字符串形式进行存储，编码为 JSON、XML 或其二进制变体（如 MongoDB 的 BSON）。如果应用程序经常需要访问整个文档（例如，将其渲染至网页），那么存储局部性会带来性能优势。如果将数据分割到多个表中（如 \autoref{fig:fig2-1} 所示），则需要进行多次索引查找才能将其全部检索出来，这可能需要更多的磁盘查找并花费更多的时间。
 
 局部性仅仅适用于同时需要文档绝大部分内容的情况。即使只访问文档其中的一小部分，数据库通常需要加载整个文档，对于大型文档来说这种加载行为是很浪费的。更新文档时，通常需要整个重写。只有不改变文档大小的修改才可以容易地原地执行。因此，通常建议保持相对小的文档，并避免增加文档大小的写入【9】。这些性能限制大大减少了文档数据库的实用场景。
 
@@ -488,7 +489,7 @@ db.observations.mapReduce(
 
 map 和 reduce 函数在功能上有所限制：它们必须是 \textbf{纯} 函数，这意味着它们只使用传递给它们的数据作为输入，它们不能执行额外的数据库查询，也不能有任何副作用。这些限制允许数据库以任何顺序运行任何功能，并在失败时重新运行它们。然而，map 和 reduce 函数仍然是强大的：它们可以解析字符串、调用库函数、执行计算等等。
 
-MapReduce 是一个相当底层的编程模型，用于计算机集群上的分布式执行。像 SQL 这样的更高级的查询语言可以用一系列的 MapReduce 操作来实现（见 [第十章](ch10.md)），但是也有很多不使用 MapReduce 的分布式 SQL 实现。须注意，SQL 并没有限制它只能在单一机器上运行，而 MapReduce 也并没有垄断所有的分布式查询执行。
+MapReduce 是一个相当底层的编程模型，用于计算机集群上的分布式执行。像 SQL 这样的更高级的查询语言可以用一系列的 MapReduce 操作来实现（见 \autoref{ch:ch10}），但是也有很多不使用 MapReduce 的分布式 SQL 实现。须注意，SQL 并没有限制它只能在单一机器上运行，而 MapReduce 也并没有垄断所有的分布式查询执行。
 
 能够在查询中使用 JavaScript 代码是高级查询的一个重要特性，但这不限于 MapReduce，一些 SQL 数据库也可以用 JavaScript 函数进行扩展【34】。
 
@@ -521,26 +522,26 @@ MapReduce 的一个可用性问题是，必须编写两个密切合作的 JavaSc
 
 \begin{itemize}
     \item 社交图谱
-    顶点是人，边指示哪些人彼此认识。
+          顶点是人，边指示哪些人彼此认识。
     \item 网络图谱
-    顶点是网页，边缘表示指向其他页面的 HTML 链接。
+          顶点是网页，边缘表示指向其他页面的 HTML 链接。
     \item 公路或铁路网络
-    顶点是交叉路口，边线代表它们之间的道路或铁路线。
+          顶点是交叉路口，边线代表它们之间的道路或铁路线。
 \end{itemize}
 
 可以将那些众所周知的算法运用到这些图上：例如，汽车导航系统搜索道路网络中两点之间的最短路径，PageRank 可以用在网络图上来确定网页的流行程度，从而确定该网页在搜索结果中的排名。
 
 在刚刚给出的例子中，图中的所有顶点代表了相同类型的事物（人、网页或交叉路口）。不过，图并不局限于这样的同类数据：同样强大地是，图提供了一种一致的方式，用来在单个数据存储中存储完全不同类型的对象。例如，Facebook 维护一个包含许多不同类型的顶点和边的单个图：顶点表示人、地点、事件、签到和用户的评论；边表示哪些人是好友、签到发生在哪里、谁评论了什么帖子、谁参与了什么事件等等【35】。
 
-在本节中，我们将使用 [图 2-5](img/fig2-5.png) 所示的示例。它可以从社交网络或系谱数据库中获得：它显示了两个人，来自爱达荷州的 Lucy 和来自法国 Beaune 的 Alain。他们已婚，住在伦敦。
+在本节中，我们将使用 \autoref{fig:fig2-5} 所示的示例。它可以从社交网络或系谱数据库中获得：它显示了两个人，来自爱达荷州的 Lucy 和来自法国 Beaune 的 Alain。他们已婚，住在伦敦。
 
 \begin{figure}
-    \includegraphics{img/fig2-5.png}
+    \includegraphics[width=0.8\textwidth]{img/fig2-5.png}
     \caption{图数据结构示例（框代表顶点，箭头代表边）}
     \label{fig:fig2-5}
 \end{figure}
 
-有几种不同但相关的方法用来构建和查询图表中的数据。在本节中，我们将讨论属性图模型（由 Neo4j，Titan 和 InfiniteGraph 实现）和三元组存储（triple-store）模型（由 Datomic、AllegroGraph 等实现）。我们将查看图的三种声明式查询语言：Cypher，SPARQL 和 Datalog。除此之外，还有像 Gremlin 【36】这样的图形查询语言和像 Pregel 这样的图形处理框架（见 [第十章](ch10.md)）。
+有几种不同但相关的方法用来构建和查询图表中的数据。在本节中，我们将讨论属性图模型（由 Neo4j，Titan 和 InfiniteGraph 实现）和三元组存储（triple-store）模型（由 Datomic、AllegroGraph 等实现）。我们将查看图的三种声明式查询语言：Cypher，SPARQL 和 Datalog。除此之外，还有像 Gremlin 【36】这样的图形查询语言和像 Pregel 这样的图形处理框架（见 \autoref{ch:ch10}）。
 
 \subsection{属性图}
 
@@ -589,7 +590,7 @@ CREATE INDEX edges_heads ON edges (head_vertex);
 \begin{enumerate}
     \item 任何顶点都可以有一条边连接到任何其他顶点。没有模式限制哪种事物可不可以关联。
     \item 给定任何顶点，可以高效地找到它的入边和出边，从而遍历图，即沿着一系列顶点的路径前后移动（这就是为什么 \autoref{exam:example2-2} 在 \texttt{tail\_vertex} 和 \texttt{head\_vertex} 列上都有索引的原因）。
-    \item 通过对不同类型的关系使用不同的标签，可以在一个图中存储几种不同的信息，同时仍然保持一个清晰的数据模型。    
+    \item 通过对不同类型的关系使用不同的标签，可以在一个图中存储几种不同的信息，同时仍然保持一个清晰的数据模型。
 \end{enumerate}
 
 这些特性为数据建模提供了很大的灵活性，如 \autoref{fig:fig2-5} 所示。图中显示了一些传统关系模式难以表达的事情，例如不同国家的不同地区结构（法国有省和大区，美国有县和州），国中国的怪事（先忽略主权国家和民族错综复杂的烂摊子），不同的数据粒度（Lucy 现在的住所记录具体到城市，而她的出生地点只是在一个州的级别）。
@@ -651,7 +652,7 @@ RETURN person.name
 
 在 Cypher 中，用 \texttt{WITHIN*0..} 非常简洁地表述了上述事实：“沿着 \texttt{WITHIN} 边，零次或多次”。它很像正则表达式中的 \texttt{*} 运算符。
 
-自 SQL:1999，查询可变长度遍历路径的思想可以使用称为 \textbf{递归公用表表达式}（\texttt{WITH\ RECURSIVE} 语法）的东西来表示。[例 2-5]() 显示了同样的查询 - 查找从美国移民到欧洲的人的姓名 - 在 SQL 使用这种技术（PostgreSQL、IBM DB2、Oracle 和 SQL Server 均支持）来表述。但是，与 Cypher 相比，其语法非常笨拙。
+自 SQL:1999，查询可变长度遍历路径的思想可以使用称为 \textbf{递归公用表表达式}（\texttt{WITH\ RECURSIVE} 语法）的东西来表示。\autoref{exam:example2-5} 显示了同样的查询 - 查找从美国移民到欧洲的人的姓名 - 在 SQL 使用这种技术（PostgreSQL、IBM DB2、Oracle 和 SQL Server 均支持）来表述。但是，与 Cypher 相比，其语法非常笨拙。
 
 \label{exam:example2-5}
 \begin{lstlisting}[caption={与示例 2-4 同样的查询，在 SQL 中使用递归公用表表达式表示}]
@@ -711,7 +712,7 @@ FROM vertices
 
 \begin{itemize}
     \item 原始数据类型中的值，例如字符串或数字。在这种情况下，三元组的谓语和宾语相当于主语顶点上的属性的键和值。例如，\texttt{(lucy, age, 33)} 就像属性 \texttt{{“age”：33}} 的顶点 lucy。
-    \item 图中的另一个顶点。在这种情况下，谓语是图中的一条边，主语是其尾部顶点，而宾语是其头部顶点。例如，在 \texttt{(lucy, marriedTo, alain)} 中主语和宾语 \texttt{lucy} 和 \texttt{alain} 都是顶点，并且谓语 \texttt{marriedTo} 是连接他们的边的标签。    
+    \item 图中的另一个顶点。在这种情况下，谓语是图中的一条边，主语是其尾部顶点，而宾语是其头部顶点。例如，在 \texttt{(lucy, marriedTo, alain)} 中主语和宾语 \texttt{lucy} 和 \texttt{alain} 都是顶点，并且谓语 \texttt{marriedTo} 是连接他们的边的标签。
 \end{itemize}
 
 
@@ -798,7 +799,7 @@ RDF 有一些奇怪之处，因为它是为了在互联网上交换数据而设�
 
 \textbf{SPARQL} 是一种用于三元组存储的面向 RDF 数据模型的查询语言【43】（它是 SPARQL 协议和 RDF 查询语言的缩写，发音为 “sparkle”）。SPARQL 早于 Cypher，并且由于 Cypher 的模式匹配借鉴于 SPARQL，这使得它们看起来非常相似【37】。
 
-与之前相同的查询 —— 查找从美国移民到欧洲的人 —— 使用 SPARQL 比使用 Cypher 甚至更为简洁（请参阅 [例 2-9]()）。
+与之前相同的查询 —— 查找从美国移民到欧洲的人 —— 使用 SPARQL 比使用 Cypher 甚至更为简洁（请参阅 \autoref{exam:example2-9}）。
 
 \label{exam:example2-9}
 \begin{lstlisting}[caption={与示例 2-4 相同的查询，用 SPARQL 表示}]
@@ -828,9 +829,9 @@ SPARQL 是一种很好的查询语言 —— 尽管它构想的语义网从未�
 
 \begin{quote}
     \textbf{图形数据库与网状模型相比较}
-    
+
     在 “文档数据库是否在重蹈覆辙？” 中，我们讨论了 CODASYL 和关系模型如何竞相解决 IMS 中的多对多关系问题。乍一看，CODASYL 的网状模型看起来与图模型相似。CODASYL 是否是图形数据库的第二个变种？
-    
+
     不，他们在几个重要方面有所不同：
     \begin{itemize}
         \item 在 CODASYL 中，数据库有一个模式，用于指定哪种记录类型可以嵌套在其他记录类型中。在图形数据库中，不存在这样的限制：任何顶点都可以具有到其他任何顶点的边。这为应用程序适应不断变化的需求提供了更大的灵活性。
@@ -846,8 +847,9 @@ SPARQL 是一种很好的查询语言 —— 尽管它构想的语义网从未�
 
 实践中，Datalog 在有限的几个数据系统中使用：例如，它是 Datomic 【40】的查询语言，Cascalog 【47】是一种用于查询 Hadoop 大数据集的 Datalog 实现 \footnote{Datomic 和 Cascalog 使用 Datalog 的 Clojure S 表达式语法。在下面的例子中使用了一个更容易阅读的 Prolog 语法，但两者没有任何功能差异。}。
 
-Datalog 的数据模型类似于三元组模式，但进行了一点泛化。把三元组写成 \textbf{谓语}（\textbf{主语，宾语}），而不是写三元语（\textbf{主语，谓语，宾语}）。[例 2-10]() 显示了如何用 Datalog 写入我们的例子中的数据。
+Datalog 的数据模型类似于三元组模式，但进行了一点泛化。把三元组写成 \textbf{谓语}（\textbf{主语，宾语}），而不是写三元语（\textbf{主语，谓语，宾语}）。\autoref{exam:example2-10} 显示了如何用 Datalog 写入我们的例子中的数据。
 
+\label{exam:example2-10}
 \begin{lstlisting}[caption={用 Datalog 来表示图 2-5 中的数据子集}]
 name(namerica, 'North America').
 type(namerica, continent).
@@ -866,10 +868,8 @@ born_in(lucy, idaho).
 
 既然已经定义了数据，我们可以像之前一样编写相同的查询，如 \autoref{exam:example2-11} 所示。它看起来与 Cypher 或 SPARQL 的语法差异较大，但请不要抗拒它。Datalog 是 Prolog 的一个子集，如果你是计算机科学专业的学生，可能已经见过 Prolog。
 
-**例 2-11 与示例 2-4 相同的查询，用 Datalog 表示**
-
 \label{exam:example2-11}
-\begin{lstlisting}
+\begin{lstlisting}[caption={与示例 2-4 相同的查询，用 Datalog 表示}]
 within_recursive(Location, Name) :- name(Location, Name). /* Rule 1 */
 
 within_recursive(Location, Name) :- within(Location, Via), /* Rule 2 */
@@ -895,7 +895,7 @@ Cypher 和 SPARQL 使用 SELECT 立即跳转，但是 Datalog 一次只进行一
 \begin{enumerate}
     \item 数据库存在 \texttt{name (namerica, 'North America')}，故运用规则 1。它生成 \texttt{within\_recursive (namerica, 'North America')}。
     \item 数据库存在 \texttt{within (usa, namerica)}，在上一步骤中生成 \texttt{within\_recursive (namerica, 'North America')}，故运用规则 2。它会产生 \texttt{within\_recursive (usa, 'North America')}。
-    \item 数据库存在 \texttt{within (idaho, usa)}，在上一步生成 \texttt{within\_recursive (usa, 'North America')}，故运用规则 2。它产生 \texttt{within\_recursive (idaho, 'North America')}。    
+    \item 数据库存在 \texttt{within (idaho, usa)}，在上一步生成 \texttt{within\_recursive (usa, 'North America')}，故运用规则 2。它产生 \texttt{within\_recursive (idaho, 'North America')}。
 \end{enumerate}
 
 
