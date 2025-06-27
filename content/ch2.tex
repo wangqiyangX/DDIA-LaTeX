@@ -1,5 +1,6 @@
 \begin{quote}
     语言的边界就是思想的边界。
+    
     \textit{—— 路德维奇・维特根斯坦，《逻辑哲学》（1922）}
 \end{quote}
 
@@ -74,39 +75,39 @@
 
 \begin{lstlisting}[caption={用 JSON 文档表示一个 LinkedIn 简介}, breaklines]
     {
-      "user_id": 251,
-      "first_name": "Bill",
-      "last_name": "Gates",
-      "summary": "Co-chair of the Bill & Melinda Gates... Active blogger.",
-      "region_id": "us:91",
-      "industry_id": 131,
-      "photo_url": "/p/7/000/253/05b/308dd6e.jpg",
-      "positions": [
-          {
-          "job_title": "Co-chair",
-          "organization": "Bill & Melinda Gates Foundation"
-          },
-          {
-          "job_title": "Co-founder, Chairman",
-          "organization": "Microsoft"
-          }
-      ],
-      "education": [
-          {
-          "school_name": "Harvard University",
-          "start": 1973,
-          "end": 1975
-          },
-          {
-          "school_name": "Lakeside School, Seattle",
-          "start": null,
-          "end": null
-          }
-      ],
-      "contact_info": {
-          "blog": "http://thegatesnotes.com",
-          "twitter": "http://twitter.com/BillGates"
-      }
+        "user_id": 251,
+        "first_name": "Bill",
+        "last_name": "Gates",
+        "summary": "Co-chair of the Bill & Melinda Gates... Active blogger.",
+        "region_id": "us:91",
+        "industry_id": 131,
+        "photo_url": "/p/7/000/253/05b/308dd6e.jpg",
+        "positions": [
+            {
+            "job_title": "Co-chair",
+            "organization": "Bill & Melinda Gates Foundation"
+            },
+            {
+            "job_title": "Co-founder, Chairman",
+            "organization": "Microsoft"
+            }
+        ],
+        "education": [
+            {
+            "school_name": "Harvard University",
+            "start": 1973,
+            "end": 1975
+            },
+            {
+            "school_name": "Lakeside School, Seattle",
+            "start": null,
+            "end": null
+            }
+        ],
+        "contact_info": {
+            "blog": "http://thegatesnotes.com",
+            "twitter": "http://twitter.com/BillGates"
+        }
     }
 \end{lstlisting}
 
@@ -152,9 +153,12 @@ JSON 表示比\autoref{fig:fig2-1}中的多表模式具有更好的\textbf{局�
 
 \begin{itemize}
     \item 组织和学校作为实体
-          在前面的描述中，\texttt{organization}（用户工作的公司）和 \texttt{school\_name}（他们学习的地方）只是字符串。也许他们应该是对实体的引用呢？然后，每个组织、学校或大学都可以拥有自己的网页（标识、新闻提要等）。每个简历可以链接到它所提到的组织和学校，并且包括他们的图标和其他信息（请参阅\autoref{fig:fig2-3}，来自 LinkedIn 的一个例子）。
+    
+    在前面的描述中，\texttt{organization}（用户工作的公司）和 \texttt{school\_name}（他们学习的地方）只是字符串。也许他们应该是对实体的引用呢？然后，每个组织、学校或大学都可以拥有自己的网页（标识、新闻提要等）。每个简历可以链接到它所提到的组织和学校，并且包括他们的图标和其他信息（请参阅\autoref{fig:fig2-3}，来自 LinkedIn 的一个例子）。
+    
     \item 推荐
-          假设你想添加一个新的功能：一个用户可以为另一个用户写一个推荐。在用户的简历上显示推荐，并附上推荐用户的姓名和照片。如果推荐人更新他们的照片，那他们写的任何推荐都需要显示新的照片。因此，推荐应该拥有作者个人简介的引用。
+    
+    假设你想添加一个新的功能：一个用户可以为另一个用户写一个推荐。在用户的简历上显示推荐，并附上推荐用户的姓名和照片。如果推荐人更新他们的照片，那他们写的任何推荐都需要显示新的照片。因此，推荐应该拥有作者个人简介的引用。
 \end{itemize}
 
 \begin{figure}
@@ -164,7 +168,7 @@ JSON 表示比\autoref{fig:fig2-1}中的多表模式具有更好的\textbf{局�
     \label{fig:fig2-3}
 \end{figure}
 
-\autoref{fig:fig2-4}阐明了这些新功能需要如何使用多对多关系。每个虚线矩形内的数据可以分组成一个文档，但是对单位，学校和其他用户的引用需要表示成引用，并且在查询时需要连接。
+\autoref{fig:fig2-4} 阐明了这些新功能需要如何使用多对多关系。每个虚线矩形内的数据可以分组成一个文档，但是对单位，学校和其他用户的引用需要表示成引用，并且在查询时需要连接。
 
 \begin{figure}
     \centering
@@ -341,22 +345,22 @@ SQL 示例不确保任何特定的顺序，因此不在意顺序是否改变。�
 
 \begin{lstlisting}
 <ul>
-  <li class="selected">
-    <p>Sharks</p>
-    <ul>
-      <li>Great White Shark</li>
-      <li>Tiger Shark</li>
-      <li>Hammerhead Shark</li>
-    </ul>
-  </li>
-  <li>
-    <p>Whales</p>
-    <ul>
-      <li>Blue Whale</li>
-      <li>Humpback Whale</li>
-      <li>Fin Whale</li>
-    </ul>
-  </li>
+    <li class="selected">
+        <p>Sharks</p>
+        <ul>
+            <li>Great White Shark</li>
+            <li>Tiger Shark</li>
+            <li>Hammerhead Shark</li>
+        </ul>
+    </li>
+    <li>
+        <p>Whales</p>
+        <ul>
+            <li>Blue Whale</li>
+            <li>Humpback Whale</li>
+            <li>Fin Whale</li>
+        </ul>
+    </li>
 </ul>
 \end{lstlisting}
 
@@ -494,15 +498,415 @@ MapReduce 的一个可用性问题是，必须编写两个密切合作的 JavaSc
     db.observations.aggregate([
         { $match: { family: "Sharks" } },
         {
-          $group: {
-            _id: {
-              year: { $year: "$observationTimestamp" },
-              month: { $month: "$observationTimestamp" },
+            $group: {
+                _id: {
+                    year: { $year: "$observationTimestamp" },
+                    month: { $month: "$observationTimestamp" },
             },
             totalAnimals: { $sum: "$numAnimals" },
-          },
+            },
         },
-      ]);
+    ]);
 \end{lstlisting}
 
 聚合管道语言的表现力与（前述 PostgreSQL 例子的）SQL 子集相当，但是它使用基于 JSON 的语法而不是 SQL 那种接近英文句式的语法；这种差异也许只是口味问题。这个故事的寓意是：NoSQL 系统可能会意外发现自己只是重新发明了一套经过乔装改扮的 SQL。
+
+\section{图数据模型}
+
+如我们之前所见，多对多关系是不同数据模型之间具有区别性的重要特征。如果你的应用程序大多数的关系是一对多关系（树状结构化数据），或者大多数记录之间不存在关系，那么使用文档模型是合适的。
+
+但是，要是多对多关系在你的数据中很常见呢？关系模型可以处理多对多关系的简单情况，但是随着数据之间的连接变得更加复杂，将数据建模为图形显得更加自然。
+
+一个图由两种对象组成：\textbf{顶点}（vertices，也称为 \textbf{节点}，即 nodes，或 \textbf{实体}，即 entities），和 \textbf{边}（edges，也称为 \textbf{关系}，即 relationships，或 \textbf{弧}，即 arcs）。多种数据可以被建模为一个图形。典型的例子包括：
+
+\begin{itemize}
+    \item 社交图谱
+    顶点是人，边指示哪些人彼此认识。
+    \item 网络图谱
+    顶点是网页，边缘表示指向其他页面的 HTML 链接。
+    \item 公路或铁路网络
+    顶点是交叉路口，边线代表它们之间的道路或铁路线。
+\end{itemize}
+
+可以将那些众所周知的算法运用到这些图上：例如，汽车导航系统搜索道路网络中两点之间的最短路径，PageRank 可以用在网络图上来确定网页的流行程度，从而确定该网页在搜索结果中的排名。
+
+在刚刚给出的例子中，图中的所有顶点代表了相同类型的事物（人、网页或交叉路口）。不过，图并不局限于这样的同类数据：同样强大地是，图提供了一种一致的方式，用来在单个数据存储中存储完全不同类型的对象。例如，Facebook 维护一个包含许多不同类型的顶点和边的单个图：顶点表示人、地点、事件、签到和用户的评论；边表示哪些人是好友、签到发生在哪里、谁评论了什么帖子、谁参与了什么事件等等【35】。
+
+在本节中，我们将使用 [图 2-5](img/fig2-5.png) 所示的示例。它可以从社交网络或系谱数据库中获得：它显示了两个人，来自爱达荷州的 Lucy 和来自法国 Beaune 的 Alain。他们已婚，住在伦敦。
+
+\begin{figure}
+    \includegraphics{img/fig2-5.png}
+    \caption{图数据结构示例（框代表顶点，箭头代表边）}
+    \label{fig:fig2-5}
+\end{figure}
+
+有几种不同但相关的方法用来构建和查询图表中的数据。在本节中，我们将讨论属性图模型（由 Neo4j，Titan 和 InfiniteGraph 实现）和三元组存储（triple-store）模型（由 Datomic、AllegroGraph 等实现）。我们将查看图的三种声明式查询语言：Cypher，SPARQL 和 Datalog。除此之外，还有像 Gremlin 【36】这样的图形查询语言和像 Pregel 这样的图形处理框架（见 [第十章](ch10.md)）。
+
+\subsection{属性图}
+
+在属性图模型中，每个顶点（vertex）包括：
+
+\begin{itemize}
+    \item 唯一的标识符
+    \item 一组出边（outgoing edges）
+    \item 一组入边（ingoing edges）
+    \item 一组属性（键值对）
+\end{itemize}
+
+每条边（edge）包括：
+
+\begin{itemize}
+    \item 唯一标识符
+    \item 边的起点（\textbf{尾部顶点}，即 tail vertex）
+    \item 边的终点（\textbf{头部顶点}，即 head vertex）
+    \item 描述两个顶点之间关系类型的标签
+    \item 一组属性（键值对）
+\end{itemize}
+
+可以将图存储看作由两个关系表组成：一个存储顶点，另一个存储边，如 \autoref{exam:example2-2} 所示（该模式使用 PostgreSQL JSON 数据类型来存储每个顶点或每条边的属性）。头部和尾部顶点用来存储每条边；如果你想要一组顶点的输入或输出边，你可以分别通过 \texttt{head\_vertex} 或 \texttt{tail\_vertex} 来查询 \texttt{edges} 表。
+
+\label{exam:example2-2}
+\begin{lstlisting}[caption={使用关系模式来表示属性图}]
+CREATE TABLE vertices (
+    vertex_id  INTEGER PRIMARY KEY,
+    properties JSON
+);
+
+CREATE TABLE edges (
+    edge_id     INTEGER PRIMARY KEY,
+    tail_vertex INTEGER REFERENCES vertices (vertex_id),
+    head_vertex INTEGER REFERENCES vertices (vertex_id),
+    label       TEXT,
+    properties  JSON
+);
+
+CREATE INDEX edges_tails ON edges (tail_vertex);
+CREATE INDEX edges_heads ON edges (head_vertex);
+\end{lstlisting}
+
+关于这个模型的一些重要方面是：
+
+\begin{enumerate}
+    \item 任何顶点都可以有一条边连接到任何其他顶点。没有模式限制哪种事物可不可以关联。
+    \item 给定任何顶点，可以高效地找到它的入边和出边，从而遍历图，即沿着一系列顶点的路径前后移动（这就是为什么 \autoref{exam:example2-2} 在 \texttt{tail\_vertex} 和 \texttt{head\_vertex} 列上都有索引的原因）。
+    \item 通过对不同类型的关系使用不同的标签，可以在一个图中存储几种不同的信息，同时仍然保持一个清晰的数据模型。    
+\end{enumerate}
+
+这些特性为数据建模提供了很大的灵活性，如 \autoref{fig:fig2-5} 所示。图中显示了一些传统关系模式难以表达的事情，例如不同国家的不同地区结构（法国有省和大区，美国有县和州），国中国的怪事（先忽略主权国家和民族错综复杂的烂摊子），不同的数据粒度（Lucy 现在的住所记录具体到城市，而她的出生地点只是在一个州的级别）。
+
+你可以想象该图还能延伸出许多关于 Lucy 和 Alain 的事实，或其他人的其他更多的事实。例如，你可以用它来表示食物过敏（为每个过敏源增加一个顶点，并增加人与过敏源之间的一条边来指示一种过敏情况），并链接到过敏源，每个过敏源具有一组顶点用来显示哪些食物含有哪些物质。然后，你可以写一个查询，找出每个人吃什么是安全的。图在可演化性方面是富有优势的：当你向应用程序添加功能时，可以轻松扩展图以适应程序数据结构的变化。
+
+\subsection{Cypher 查询语言}
+
+Cypher 是属性图的声明式查询语言，为 Neo4j 图形数据库而发明【37】（它是以电影 “黑客帝国” 中的一个角色来命名的，而与密码学中的加密算法无关【38】）。
+
+\author{exam:example2-3} 显示了将 \autoref{fig:fig2-5} 的左边部分插入图形数据库的 Cypher 查询。你可以以类似的方式把图的剩余部分添加进去，但这里为了文章可閱读性而省略这部分的示例。每个顶点都有一个像 \texttt{USA} 或 \texttt{Idaho} 这样的符号名称，查询的其他部分可以使用这些名称在顶点之间创建边，使用箭头符号：\texttt{（Idaho） - [：WITHIN] ->（USA）} 创建一条标记为 \texttt{WITHIN} 的边，\texttt{Idaho} 为尾节点，\texttt{USA} 为头节点。
+
+\label{exam:example2-3}
+\begin{lstlisting}[caption={将图 2-5 中的数据子集表示为 Cypher 查询}]
+CREATE
+    (NAmerica:Location {name:'North America', type:'continent'}),
+    (USA:Location      {name:'United States', type:'country'  }),
+    (Idaho:Location    {name:'Idaho',         type:'state'    }),
+    (Lucy:Person       {name:'Lucy' }),
+    (Idaho) -[:WITHIN]->  (USA)  -[:WITHIN]-> (NAmerica),
+    (Lucy)  -[:BORN_IN]-> (Idaho)
+\end{lstlisting}
+
+当 \autoref{fig:fig2-5} 的所有顶点和边被添加到数据库后，让我们提些有趣的问题：例如，找到所有从美国移民到欧洲的人的名字。更确切地说，这里我们想要找到符合下面条件的所有顶点，并且返回这些顶点的 \texttt{name} 属性：该顶点拥有一条连到美国任一位置的 \texttt{BORN\_IN} 边，和一条连到欧洲的任一位置的 \texttt{LIVING\_IN} 边。
+
+\autoref{exam:example2-3} 展示了如何在 Cypher 中表达这个查询。在 MATCH 子句中使用相同的箭头符号来查找图中的模式：\texttt{(person) -[:BORN\_IN]-> ()} 可以匹配 \texttt{BORN\_IN} 边的任意两个顶点。该边的尾节点被绑定了变量 \texttt{person}，头节点则未被绑定。
+
+\begin{lstlisting}[caption={查找所有从美国移民到欧洲的人的 Cypher 查询：}]
+MATCH
+    (person) -[:BORN_IN]->  () -[:WITHIN*0..]-> (us:Location {name:'United States'}),
+    (person) -[:LIVES_IN]-> () -[:WITHIN*0..]-> (eu:Location {name:'Europe'})
+RETURN person.name
+\end{lstlisting}
+
+查询按如下来解读：
+
+\begin{quote}
+    找到满足以下两个条件的所有顶点（称之为 person 顶点）：
+    \begin{enumerate}
+        \item \texttt{person} 顶点拥有一条到某个顶点的 \texttt{BORN\_IN} 出边。从那个顶点开始，沿着一系列 \texttt{WITHIN} 出边最终到达一个类型为 \texttt{Location}，\texttt{name} 属性为 \texttt{United States} 的顶点。
+        \item \texttt{person} 顶点还拥有一条 \texttt{LIVES\_IN} 出边。沿着这条边，可以通过一系列 \texttt{WITHIN} 出边最终到达一个类型为 \texttt{Location}，\texttt{name} 属性为 \texttt{Europe} 的顶点。
+    \end{enumerate}
+    对于这样的 \texttt{Person} 顶点，返回其 \texttt{name} 属性。
+\end{quote}
+
+执行这条查询可能会有几种可行的查询路径。这里给出的描述建议首先扫描数据库中的所有人，检查每个人的出生地和居住地，然后只返回符合条件的那些人。
+
+等价地，也可以从两个 \texttt{Location} 顶点开始反向地查找。假如 \texttt{name} 属性上有索引，则可以高效地找到代表美国和欧洲的两个顶点。然后，沿着所有 \texttt{WITHIN} 入边，可以继续查找出所有在美国和欧洲的位置（州、地区、城市等）。最后，查找出那些可以由 \texttt{BORN\_IN} 或 \texttt{LIVES\_IN} 入边到那些位置顶点的人。
+
+通常对于声明式查询语言来说，在编写查询语句时，不需要指定执行细节：查询优化程序会自动选择预测效率最高的策略，因此你可以专注于编写应用程序的其他部分。
+
+\subsection{SQL 中的图查询}
+
+\autoref{exam:example2-2} 指出，可以在关系数据库中表示图数据。但是，如果图数据已经以关系结构存储，我们是否也可以使用 SQL 查询它？
+
+答案是肯定的，但有些困难。在关系数据库中，你通常会事先知道在查询中需要哪些连接。在图查询中，你可能需要在找到待查找的顶点之前，遍历可变数量的边。也就是说，连接的数量事先并不确定。
+
+在我们的例子中，这发生在 Cypher 查询中的 \texttt{() -[:WITHIN*0..]-> ()} 规则中。一个人的 \texttt{LIVES\_IN} 边可以指向任何类型的位置：街道、城市、地区、国家等。一个城市可以在（WITHIN）一个地区内，一个地区可以在（WITHIN）在一个州内，一个州可以在（WITHIN）一个国家内，等等。\texttt{LIVES\_IN} 边可以直接指向正在查找的位置，或者一个在位置层次结构中隔了数层的位置。
+
+在 Cypher 中，用 \texttt{WITHIN*0..} 非常简洁地表述了上述事实：“沿着 \texttt{WITHIN} 边，零次或多次”。它很像正则表达式中的 \texttt{*} 运算符。
+
+自 SQL:1999，查询可变长度遍历路径的思想可以使用称为 \textbf{递归公用表表达式}（\texttt{WITH\ RECURSIVE} 语法）的东西来表示。[例 2-5]() 显示了同样的查询 - 查找从美国移民到欧洲的人的姓名 - 在 SQL 使用这种技术（PostgreSQL、IBM DB2、Oracle 和 SQL Server 均支持）来表述。但是，与 Cypher 相比，其语法非常笨拙。
+
+\label{exam:example2-5}
+\begin{lstlisting}[caption={与示例 2-4 同样的查询，在 SQL 中使用递归公用表表达式表示}]
+WITH RECURSIVE
+  -- in_usa 包含所有的美国境内的位置 ID
+    in_usa(vertex_id) AS (
+    SELECT vertex_id FROM vertices WHERE properties ->> 'name' = 'United States'
+    UNION
+    SELECT edges.tail_vertex FROM edges
+      JOIN in_usa ON edges.head_vertex = in_usa.vertex_id
+      WHERE edges.label = 'within'
+  ),
+  -- in_europe 包含所有的欧洲境内的位置 ID
+    in_europe(vertex_id) AS (
+    SELECT vertex_id FROM vertices WHERE properties ->> 'name' = 'Europe'
+    UNION
+    SELECT edges.tail_vertex FROM edges
+      JOIN in_europe ON edges.head_vertex = in_europe.vertex_id
+      WHERE edges.label = 'within' ),
+
+  -- born_in_usa 包含了所有类型为 Person，且出生在美国的顶点
+    born_in_usa(vertex_id) AS (
+      SELECT edges.tail_vertex FROM edges
+        JOIN in_usa ON edges.head_vertex = in_usa.vertex_id
+        WHERE edges.label = 'born_in' ),
+
+  -- lives_in_europe 包含了所有类型为 Person，且居住在欧洲的顶点。
+    lives_in_europe(vertex_id) AS (
+      SELECT edges.tail_vertex FROM edges
+        JOIN in_europe ON edges.head_vertex = in_europe.vertex_id
+        WHERE edges.label = 'lives_in')
+
+SELECT vertices.properties ->> 'name'
+FROM vertices
+    JOIN born_in_usa ON vertices.vertex_id = born_in_usa.vertex_id
+    JOIN lives_in_europe ON vertices.vertex_id = lives_in_europe.vertex_id;
+\end{lstlisting}
+
+\begin{itemize}
+    \item 首先，查找 \texttt{name} 属性为 \texttt{United States} 的顶点，将其作为 \texttt{in\_usa} 顶点的集合的第一个元素。
+    \item 从 \texttt{in\_usa} 集合的顶点出发，沿着所有的 \texttt{with\_in} 入边，将其尾顶点加入同一集合，不断递归直到所有 \texttt{with\_in} 入边都被访问完毕。
+    \item 同理，从 \texttt{name} 属性为 \texttt{Europe} 的顶点出发，建立 \texttt{in\_europe} 顶点的集合。
+    \item 对于 \texttt{in\_usa} 集合中的每个顶点，根据 \texttt{born\_in} 入边来查找出生在美国某个地方的人。
+    \item 同样，对于 \texttt{in\_europe} 集合中的每个顶点，根据 \texttt{lives\_in} 入边来查找居住在欧洲的人。
+    \item 最后，把在美国出生的人的集合与在欧洲居住的人的集合相交。
+\end{itemize}
+
+同一个查询，用某一个查询语言可以写成 4 行，而用另一个查询语言需要 29 行，这恰恰说明了不同的数据模型是为不同的应用场景而设计的。选择适合应用程序的数据模型非常重要。
+
+\subsection{三元组存储和 SPARQL}
+
+三元组存储模式大体上与属性图模型相同，用不同的词来描述相同的想法。不过仍然值得讨论，因为三元组存储有很多现成的工具和语言，这些工具和语言对于构建应用程序的工具箱可能是宝贵的补充。
+
+在三元组存储中，所有信息都以非常简单的三部分表示形式存储（\textbf{主语}，\textbf{谓语}，\textbf{宾语}）。例如，三元组 \textbf{(吉姆, 喜欢, 香蕉)} 中，\textbf{吉姆} 是主语，\textbf{喜欢} 是谓语（动词），\textbf{香蕉} 是对象。
+
+三元组的主语相当于图中的一个顶点。而宾语是下面两者之一：
+
+\begin{itemize}
+    \item 原始数据类型中的值，例如字符串或数字。在这种情况下，三元组的谓语和宾语相当于主语顶点上的属性的键和值。例如，\texttt{(lucy, age, 33)} 就像属性 \texttt{{“age”：33}} 的顶点 lucy。
+    \item 图中的另一个顶点。在这种情况下，谓语是图中的一条边，主语是其尾部顶点，而宾语是其头部顶点。例如，在 \texttt{(lucy, marriedTo, alain)} 中主语和宾语 \texttt{lucy} 和 \texttt{alain} 都是顶点，并且谓语 \texttt{marriedTo} 是连接他们的边的标签。    
+\end{itemize}
+
+
+\autoref{exam:example2-6} 展示了与 \autoref{exam:example2-3} 相同的数据，以称为 Turtle 的格式（Notation3（N3）【39】的一个子集）写成三元组。
+
+\label{exam:example2-6}
+\begin{lstlisting}[caption={图 2-5 中的数据子集，表示为 Turtle 三元组}]
+@prefix : <urn:example:>.
+_:lucy     a       :Person.
+_:lucy     :name   "Lucy".
+_:lucy     :bornIn _:idaho.
+_:idaho    a       :Location.
+_:idaho    :name   "Idaho".
+_:idaho    :type   "state".
+_:idaho    :within _:usa.
+_:usa      a       :Location
+_:usa      :name   "United States"
+_:usa      :type   "country".
+_:usa      :within _:namerica.
+_:namerica a       :Location
+_:namerica :name   "North America"
+_:namerica :type   :"continent"
+\end{lstlisting}
+
+在这个例子中，图的顶点被写为：\texttt{\_：someName}。这个名字并不意味着这个文件以外的任何东西。它的存在只是帮助我们明确哪些三元组引用了同一顶点。当谓语表示边时，该宾语是一个顶点，如 \texttt{\_:idaho :within \_:usa.}。当谓语是一个属性时，该宾语是一个字符串，如 \texttt{\_:usa :name"United States"}
+
+一遍又一遍地重复相同的主语看起来相当重复，但幸运的是，可以使用分号来说明关于同一主语的多个事情。这使得 Turtle 格式相当不错，可读性强：请参阅 \autoref{exam:example2-7}。
+
+\label{exam:example2-7}
+\begin{lstlisting}[caption={一种相对例 2-6 写入数据的更为简洁的方法。}]
+@prefix : <urn:example:>.
+_:lucy      a :Person;   :name "Lucy";          :bornIn _:idaho.
+_:idaho     a :Location; :name "Idaho";         :type "state";   :within _:usa
+_:usa       a :Loaction; :name "United States"; :type "country"; :within _:namerica.
+_:namerica  a :Location; :name "North America"; :type "continent".
+\end{lstlisting}
+
+\subsubsection{语义网}
+
+如果你深入了解关于三元组存储的信息，可能会陷入关于\textbf{语义网}的讨论漩涡中。三元组存储模型其实是完全独立于语义网存在的，例如，Datomic【40】作为一种三元组存储数据库\footnote{从技术上讲，Datomic 使用的是五元组而不是三元组，两个额外的字段是用于版本控制的元数据}，从未被用于语义网中。但是，由于在很多人眼中这两者紧密相连，我们应该简要地讨论一下。
+
+从本质上讲，语义网是一个简单且合理的想法：网站已经将信息发布为文字和图片供人类阅读，为什么不将信息作为机器可读的数据也发布给计算机呢？（基于三元组模型的）\textbf{资源描述框架}（\textbf{RDF}）【41】，被用作不同网站以统一的格式发布数据的一种机制，允许来自不同网站的数据自动合并成 \textbf{一个数据网络} —— 成为一种互联网范围内的 “通用语义网数据库”。
+
+不幸的是，语义网在二十一世纪初被过度炒作，但到目前为止没有任何迹象表明已在实践中应用，这使得许多人嗤之以鼻。它还饱受眼花缭乱的缩略词、过于复杂的标准提案和狂妄自大的困扰。
+
+然而，如果从过去的失败中汲取教训，语义网项目还是拥有很多优秀的成果。即使你没有兴趣在语义网上发布 RDF 数据，三元组这种模型也是一种好的应用程序内部数据模型。
+
+\subsubsection{RDF 数据模型}
+
+\autoref{exam:example2-7} 中使用的 Turtle 语言是一种用于 RDF 数据的人类可读格式。有时候，RDF 也可以以 XML 格式编写，不过完成同样的事情会相对啰嗦，请参阅 \autoref{exam:example2-8}。Turtle/N3 是更可取的，因为它更容易阅读，像 Apache Jena 【42】这样的工具可以根据需要在不同的 RDF 格式之间进行自动转换。
+
+\label{exam:example2-8}
+\begin{lstlisting}[caption={用 RDF/XML 语法表示例 2-7 的数据}]
+<rdf:RDF xmlns="urn:example:"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Location rdf:nodeID="idaho">
+    <name>Idaho</name>
+    <type>state</type>
+    <within>
+        <Location rdf:nodeID="usa">
+            <name>United States</name>
+            <type>country</type>
+            <within>
+                <Location rdf:nodeID="namerica">
+                    <name>North America</name>
+                    <type>continent</type>
+                </Location>
+            </within>
+        </Location>
+    </within>
+    </Location>
+    <Person rdf:nodeID="lucy">
+    <name>Lucy</name>
+    <bornIn rdf:nodeID="idaho"/>
+    </Person>
+</rdf:RDF>
+\end{lstlisting}
+
+RDF 有一些奇怪之处，因为它是为了在互联网上交换数据而设计的。三元组的主语，谓语和宾语通常是 URI。例如，谓语可能是一个 URI，如 \texttt{<http://my-company.com/namespace\#within>} 或 \texttt{<http://my-company.com/namespace\#lives\_in>}，而不仅仅是 \texttt{WITHIN} 或 \texttt{LIVES\_IN}。这个设计背后的原因为了让你能够把你的数据和其他人的数据结合起来，如果他们赋予单词 \texttt{within} 或者 \texttt{lives\_in} 不同的含义，两者也不会冲突，因为它们的谓语实际上是 \texttt{<http://other.org/foo\#within>} 和 \texttt{<http://other.org/foo\#lives\_in>}。
+
+从 RDF 的角度来看，URL \texttt{<http://my-company.com/namespace>} 不一定需要能解析成什么东西，它只是一个命名空间。为避免与 \texttt{http://URL} 混淆，本节中的示例使用不可解析的 URI，如 \texttt{urn：example：within}。幸运的是，你只需在文件顶部对这个前缀做一次声明，后续就不用再管了。
+
+\subsection{SPARQL 查询语言}
+
+\textbf{SPARQL} 是一种用于三元组存储的面向 RDF 数据模型的查询语言【43】（它是 SPARQL 协议和 RDF 查询语言的缩写，发音为 “sparkle”）。SPARQL 早于 Cypher，并且由于 Cypher 的模式匹配借鉴于 SPARQL，这使得它们看起来非常相似【37】。
+
+与之前相同的查询 —— 查找从美国移民到欧洲的人 —— 使用 SPARQL 比使用 Cypher 甚至更为简洁（请参阅 [例 2-9]()）。
+
+\label{exam:example2-9}
+\begin{lstlisting}[caption={与示例 2-4 相同的查询，用 SPARQL 表示}]
+PREFIX : <urn:example:>
+SELECT ?personName WHERE {
+    ?person :name ?personName.
+    ?person :bornIn  / :within* / :name "United States".
+    ?person :livesIn / :within* / :name "Europe".
+}
+\end{lstlisting}
+
+结构非常相似。以下两个表达式是等价的（SPARQL 中的变量以问号开头）：
+
+\begin{lstlisting}
+(person) -[:BORN_IN]-> () -[:WITHIN*0..]-> (location)   # Cypher
+?person :bornIn / :within* ?location.                   # SPARQL
+\end{lstlisting}
+
+因为 RDF 不区分属性和边，而只是将它们作为谓语，所以可以使用相同的语法来匹配属性。在下面的表达式中，变量 \texttt{usa} 被绑定到任意 \texttt{name} 属性为字符串值 \texttt{"United States"} 的顶点：
+
+\begin{lstlisting}
+(usa {name:'United States'})   # Cypher
+?usa :name "United States".    # SPARQL
+\end{lstlisting}
+
+SPARQL 是一种很好的查询语言 —— 尽管它构想的语义网从未实现，但它仍然是一种可用于应用程序内部的强大工具。
+
+\begin{quote}
+    \textbf{图形数据库与网状模型相比较}
+    
+    在 “文档数据库是否在重蹈覆辙？” 中，我们讨论了 CODASYL 和关系模型如何竞相解决 IMS 中的多对多关系问题。乍一看，CODASYL 的网状模型看起来与图模型相似。CODASYL 是否是图形数据库的第二个变种？
+    
+    不，他们在几个重要方面有所不同：
+    \begin{itemize}
+        \item 在 CODASYL 中，数据库有一个模式，用于指定哪种记录类型可以嵌套在其他记录类型中。在图形数据库中，不存在这样的限制：任何顶点都可以具有到其他任何顶点的边。这为应用程序适应不断变化的需求提供了更大的灵活性。
+        \item 在 CODASYL 中，达到特定记录的唯一方法是遍历其中的一个访问路径。在图形数据库中，可以通过其唯一 ID 直接引用任何顶点，也可以使用索引来查找具有特定值的顶点。
+        \item 在 CODASYL 中，记录的子项目是一个有序集合，所以数据库必须去管理它们的次序（这会影响存储布局），并且应用程序在插入新记录到数据库时必须关注新记录在这些集合中的位置。在图形数据库中，顶点和边是无序的（只能在查询时对结果进行排序）。
+        \item 在 CODASYL 中，所有查询都是命令式的，难以编写，并且很容易因架构变化而受到破坏。在图形数据库中，你可以在命令式代码中手写遍历过程，但大多数图形数据库都支持高级声明式查询，如 Cypher 或 SPARQL。
+    \end{itemize}
+\end{quote}
+
+\subsection{基础：Datalog}
+
+\textbf{Datalog} 是比 SPARQL、Cypher 更古老的语言，在 20 世纪 80 年代被学者广泛研究【44,45,46】。它在软件工程师中不太知名，但是它是重要的，因为它为以后的查询语言提供了基础。
+
+实践中，Datalog 在有限的几个数据系统中使用：例如，它是 Datomic 【40】的查询语言，Cascalog 【47】是一种用于查询 Hadoop 大数据集的 Datalog 实现 \footnote{Datomic 和 Cascalog 使用 Datalog 的 Clojure S 表达式语法。在下面的例子中使用了一个更容易阅读的 Prolog 语法，但两者没有任何功能差异。}。
+
+Datalog 的数据模型类似于三元组模式，但进行了一点泛化。把三元组写成 \textbf{谓语}（\textbf{主语，宾语}），而不是写三元语（\textbf{主语，谓语，宾语}）。[例 2-10]() 显示了如何用 Datalog 写入我们的例子中的数据。
+
+\begin{lstlisting}[caption={用 Datalog 来表示图 2-5 中的数据子集}]
+name(namerica, 'North America').
+type(namerica, continent).
+
+name(usa, 'United States').
+type(usa, country).
+within(usa, namerica).
+
+name(idaho, 'Idaho').
+type(idaho, state).
+within(idaho, usa).
+
+name(lucy, 'Lucy').
+born_in(lucy, idaho).
+\end{lstlisting}
+
+既然已经定义了数据，我们可以像之前一样编写相同的查询，如 \autoref{exam:example2-11} 所示。它看起来与 Cypher 或 SPARQL 的语法差异较大，但请不要抗拒它。Datalog 是 Prolog 的一个子集，如果你是计算机科学专业的学生，可能已经见过 Prolog。
+
+**例 2-11 与示例 2-4 相同的查询，用 Datalog 表示**
+
+\label{exam:example2-11}
+\begin{lstlisting}
+within_recursive(Location, Name) :- name(Location, Name). /* Rule 1 */
+
+within_recursive(Location, Name) :- within(Location, Via), /* Rule 2 */
+                    within_recursive(Via, Name).
+
+migrated(Name, BornIn, LivingIn) :- name(Person, Name), /* Rule 3 */
+                                    born_in(Person, BornLoc),
+                                    within_recursive(BornLoc, BornIn),
+                                    lives_in(Person, LivingLoc),
+                                    within_recursive(LivingLoc, LivingIn).
+
+?- migrated(Who, 'United States', 'Europe'). /* Who = 'Lucy'. */
+\end{lstlisting}
+
+Cypher 和 SPARQL 使用 SELECT 立即跳转，但是 Datalog 一次只进行一小步。我们定义 \textbf{规则}，以将新谓语告诉数据库：在这里，我们定义了两个新的谓语，\texttt{within\_recursive} 和 \texttt{migrated}。这些谓语不是存储在数据库中的三元组中，而是从数据或其他规则派生而来的。规则可以引用其他规则，就像函数可以调用其他函数或者递归地调用自己一样。像这样，复杂的查询可以借由小的砖瓦构建起来。
+
+在规则中，以大写字母开头的单词是变量，谓语则用 Cypher 和 SPARQL 的方式一样来匹配。例如，\texttt{name(Location, Name)} 通过变量绑定 \texttt{Location = namerica} 和 \texttt{Name ='North America'} 可以匹配三元组 \texttt{name(namerica, 'North America')}。
+
+要是系统可以在 \texttt{:-} 操作符的右侧找到与所有谓语的一个匹配，就运用该规则。当规则运用时，就好像通过 \texttt{:-} 的左侧将其添加到数据库（将变量替换成它们匹配的值）。
+
+因此，一种可能的应用规则的方式是：
+
+\begin{enumerate}
+    \item 数据库存在 \texttt{name (namerica, 'North America')}，故运用规则 1。它生成 \texttt{within\_recursive (namerica, 'North America')}。
+    \item 数据库存在 \texttt{within (usa, namerica)}，在上一步骤中生成 \texttt{within\_recursive (namerica, 'North America')}，故运用规则 2。它会产生 \texttt{within\_recursive (usa, 'North America')}。
+    \item 数据库存在 \texttt{within (idaho, usa)}，在上一步生成 \texttt{within\_recursive (usa, 'North America')}，故运用规则 2。它产生 \texttt{within\_recursive (idaho, 'North America')}。    
+\end{enumerate}
+
+
+通过重复应用规则 1 和 2，\texttt{within\_recursive} 谓语可以告诉我们在数据库中包含北美（或任何其他位置名称）的所有位置。这个过程如 \autoref{fig:fig2-6} 所示。
+
+\begin{figure}[hbtp]
+    \includegraphics[width=0.8\textwidth]{img/fig2-6.png}
+    \caption{使用示例 2-11 中的 Datalog 规则来确定爱达荷州在北美。}
+    \label{fig:fig2-6}
+\end{figure}
+
+现在规则 3 可以找到出生在某个地方 \texttt{BornIn} 的人，并住在某个地方 \texttt{LivingIn}。通过查询 \texttt{BornIn ='United States'} 和 \texttt{LivingIn ='Europe'}，并将此人作为变量 \texttt{Who}，让 Datalog 系统找出变量 \texttt{Who} 会出现哪些值。因此，最后得到了与早先的 Cypher 和 SPARQL 查询相同的答案。
+
+相对于本章讨论的其他查询语言，我们需要采取不同的思维方式来思考 Datalog 方法，但这是一种非常强大的方法，因为规则可以在不同的查询中进行组合和重用。虽然对于简单的一次性查询，显得不太方便，但是它可以更好地处理数据很复杂的情况。
